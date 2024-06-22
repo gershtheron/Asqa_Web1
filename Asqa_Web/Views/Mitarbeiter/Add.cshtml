@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Asqa_Web.Models.AddMitarbeiterViewModel
+
+<h1> Add Mitarbeiter</h1>
+
+
+
+<form method="post">
+    <div class="mt-3">
+        <label class="form-label">Nachname</label>
+        <input type="text" class="form-control" asp-for="Ma_Nachname"/>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-label">Vorname</label>
+        <input type="text" class="form-control" asp-for="Ma_Vorname"/>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-label">Gebjahr</label>
+        <input type="text" class="form-control" asp-for="Ma_Gebjahr"/>
+    </div>
+
+
+    <div class="mt-3">
+        <label class="form-label">Firma Rolle</label>
+        <input type="text" class="form-control" asp-for="Ma_FirmaRolle"/>
+    </div>
+    
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">SAVE</button>
+    </div>
+</form>
+
