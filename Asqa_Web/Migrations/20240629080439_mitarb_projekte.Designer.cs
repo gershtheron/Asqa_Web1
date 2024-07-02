@@ -4,6 +4,7 @@ using Asqa_Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Asqa_Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240629080439_mitarb_projekte")]
+    partial class mitarb_projekte
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,49 +49,6 @@ namespace Asqa_Web.Migrations
                     b.ToTable("Ausbildungen");
                 });
 
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Ma_Projekt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("MaNachname")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<Guid>("MitarbeiterId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Proj_Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("ProjektId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Rolle")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Taetigkeiten")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MitarbeiterId");
-
-                    b.HasIndex("ProjektId");
-
-                    b.ToTable("Ma_Projekte");
-                });
-
             modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarb_Projekt", b =>
                 {
                     b.Property<int>("Id")
@@ -100,17 +60,23 @@ namespace Asqa_Web.Migrations
                     b.Property<DateTime?>("End_date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid>("Ma_id")
-                        .HasColumnType("char(36)");
+                    b.Property<int>("Ma_id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Ma_rolle")
                         .HasColumnType("longtext");
+
+                    b.Property<Guid?>("MitarbeiterId")
+                        .HasColumnType("char(36)");
 
                     b.Property<int>("Proj_id")
                         .HasColumnType("int");
 
                     b.Property<string>("Proj_name")
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("ProjektenId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Start_date")
                         .HasColumnType("datetime(6)");
@@ -120,9 +86,9 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Ma_id");
+                    b.HasIndex("MitarbeiterId");
 
-                    b.HasIndex("Proj_id");
+                    b.HasIndex("ProjektenId");
 
                     b.ToTable("Mitarb_Projekte");
                 });
@@ -233,52 +199,19 @@ namespace Asqa_Web.Migrations
                     b.ToTable("Technologie");
                 });
 
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Ma_Projekt", b =>
-                {
-                    b.HasOne("Asqa_Web.Models.Entities.Mitarbeiter", "Mitarbeiter")
-                        .WithMany("Ma_Projekte")
-                        .HasForeignKey("MitarbeiterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Asqa_Web.Models.Entities.Projekten", "Projekten")
-                        .WithMany("Ma_Projekte")
-                        .HasForeignKey("ProjektId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mitarbeiter");
-
-                    b.Navigation("Projekten");
-                });
-
             modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarb_Projekt", b =>
                 {
                     b.HasOne("Asqa_Web.Models.Entities.Mitarbeiter", "Mitarbeiter")
                         .WithMany()
-                        .HasForeignKey("Ma_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MitarbeiterId");
 
                     b.HasOne("Asqa_Web.Models.Entities.Projekten", "Projekten")
                         .WithMany()
-                        .HasForeignKey("Proj_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjektenId");
 
                     b.Navigation("Mitarbeiter");
 
                     b.Navigation("Projekten");
-                });
-
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarbeiter", b =>
-                {
-                    b.Navigation("Ma_Projekte");
-                });
-
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Projekten", b =>
-                {
-                    b.Navigation("Ma_Projekte");
                 });
 #pragma warning restore 612, 618
         }

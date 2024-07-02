@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Asqa_Web.Models.Entities.Rolle
+
+@{
+    ViewData["Title"] = "Rolle Details";
+}
+
+<h2>Rolle Details</h2>
+
+<div>
+    <h4>Rolle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolle_name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rolle_name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

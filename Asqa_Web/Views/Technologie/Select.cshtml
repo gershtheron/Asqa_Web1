@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Asqa_Web.Models.SelectTechnologieViewModel
+
+<h1>Select Technologie</h1>
+
+<form asp-action="Select" method="post">
+    <div class="form-group">
+        <label for="SelectedTechnologieId">Select Tech</label>
+        <select asp-for="SelectedTechnologieId" class="form-control" asp-items="Model.TechnologieList">
+            <option value="">-- Select  --</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Select</button>
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Technologie")'">Add Tech</button>
+
+</form>
+
+@if (Model.SelectedTechnologieId != 0)
+{
+    <div class="mt-4">
+        <h3>Tech Details</h3>
+        <p><strong>Tech Name:</strong> @Model.Tech_name</p>
+    </div>
+}

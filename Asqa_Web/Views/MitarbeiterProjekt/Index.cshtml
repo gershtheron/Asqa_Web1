@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Asqa_Web.Models.Entities.Mitarb_Projekt>
+
+@{
+    ViewData["Title"] = "Mitarb_Projekt List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ma_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proj_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ma_rolle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Start_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Taetigkeiten)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ma_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proj_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ma_rolle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Taetigkeiten)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

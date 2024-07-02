@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Asqa_Web.Models.SelectProjektenViewModel
+
+<h1>Select Projekten</h1>
+
+<form asp-action="Select" method="post">
+    <div class="form-group">
+        <label for="SelectedProjektenId">Select Projekt</label>
+        <select asp-for="SelectedProjektenId" class="form-control" asp-items="Model.ProjektenList">
+            <option value="">-- Select Projekt --</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Select</button>
+
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Projekten")'">Add Projekt</button>
+
+</form>
+
+@if (Model.SelectedProjektenId != 0)
+{
+    <div class="mt-4">
+        <h3>Projekten Details</h3>
+        <p><strong>Projekt Name:</strong> @Model.Proj_Name</p>
+    </div>
+}

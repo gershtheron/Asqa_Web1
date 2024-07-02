@@ -3,38 +3,72 @@
 *@
 @{
 }
-
 @model Asqa_Web.Models.AddMitarbeiterViewModel
+@{
+    ViewData["Title"] = "Add Mitarbeiter";
+}
 
-<h1> Add Mitarbeiter</h1>
+<h1>Add Mitarbeiter</h1>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
 
+<form method="post" enctype="multipart/form-data" id="mitarbeiterForm">
+    <div asp-validation-summary="All" class="text-danger"></div> <!-- Add this line to display all validation errors -->
 
-<form method="post">
     <div class="mt-3">
         <label class="form-label">Nachname</label>
-        <input type="text" class="form-control" asp-for="Ma_Nachname"/>
+        <input type="text" class="form-control" asp-for="Ma_Nachname" />
+        <span asp-validation-for="Ma_Nachname" class="text-danger"></span>
     </div>
 
     <div class="mt-3">
         <label class="form-label">Vorname</label>
-        <input type="text" class="form-control" asp-for="Ma_Vorname"/>
+        <input type="text" class="form-control" asp-for="Ma_Vorname" />
+        <span asp-validation-for="Ma_Vorname" class="text-danger"></span>
     </div>
 
     <div class="mt-3">
         <label class="form-label">Gebjahr</label>
-        <input type="text" class="form-control" asp-for="Ma_Gebjahr"/>
+        <input type="text" class="form-control" asp-for="Ma_Gebjahr" />
+        <span asp-validation-for="Ma_Gebjahr" class="text-danger"></span>
     </div>
-
 
     <div class="mt-3">
-        <label class="form-label">Firma Rolle</label>
-        <input type="text" class="form-control" asp-for="Ma_FirmaRolle"/>
+        <label class="form-label">Firmarolle</label>
+        <input type="text" class="form-control" asp-for="Ma_FirmaRolle" />
+        <span asp-validation-for="Ma_FirmaRolle" class="text-danger"></span>
     </div>
-    
+
+    <div class="mt-3">
+        <label class="form-label">Image</label>
+        <input type="file" class="form-control" asp-for="Ma_Image" />
+        <span asp-validation-for="Ma_Image" class="text-danger"></span>
+    </div>
 
     <div class="mt-3">
         <button type="submit" class="btn btn-primary">SAVE</button>
     </div>
 </form>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    @if (TempData["DuplicateEntry"] != null)
+    {
+        <script>
+            alert("Mitarbeiter already exists.");
+            document.getElementById('mitarbeiterForm').reset();
+        </script>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            document.getElementById('mitarbeiterForm').reset();
+        </script>
+    }
+}

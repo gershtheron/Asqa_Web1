@@ -2,7 +2,24 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+<!-- <div class="text-center">
+	<h1 class="display-4">Welcome</h1>
+	<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>-->
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <img src="~/images/asqabackground.jpeg" alt="Welcome Image" style="max-width: 50%; height: auto;" />
+
+    <h1 class="display-4"></h1>
+    <div role="group">
+
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Select", "Mitarbeiter")'">  Berater  </button>
+
+
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Select", "Projekten")'">  Projekt  </button>
+
+
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Select", "Technologie")'">   Tech   </button>
+    </div>
+
