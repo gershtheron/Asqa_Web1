@@ -3,7 +3,7 @@
 *@
 @{
 }
-@model Asqa_Web.Models.Entities.Ma_Projekt
+@model Asqa_Web.Models.AddMa_ProjektViewModel
 
 @{
     ViewData["Title"] = "Create Ma_Projekt";
@@ -13,30 +13,29 @@
 
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="MitarbeiterId" class="control-label">Mitarbeiter</label>
-        <select asp-for="MitarbeiterId" class="form-control" asp-items="ViewBag.MitarbeiterList"></select>
+        <label asp-for="Ma_id" class="control-label">Mitarbeiter</label>
+        <select asp-for="Ma_id" class="form-control" asp-items="ViewBag.MitarbeiterList"></select>
     </div>
     <div class="form-group">
-        <label asp-for="ProjektId" class="control-label">Projekt</label>
-        <select asp-for="ProjektId" class="form-control" asp-items="ViewBag.ProjektenList"></select>
+        <label asp-for="Proj_id" class="control-label">Projekt</label>
+        <select asp-for="Proj_id" class="form-control" asp-items="ViewBag.ProjektList"></select>
     </div>
     <div class="form-group">
-        <label asp-for="Rolle" class="control-label">Rolle</label>
-        <select asp-for="Rolle" class="form-control" asp-items="ViewBag.RolleList"></select>
+        <label asp-for="Ma_rolle" class="control-label">Rolle</label>
+        <select asp-for="Ma_rolle" class="form-control" asp-items="ViewBag.RolleList"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Start_date" class="control-label">Start Date</label>
+        <input asp-for="Start_date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="End_date" class="control-label">End Date</label>
+        <input asp-for="End_date" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Taetigkeiten" class="control-label">Taetigkeiten</label>
         <select asp-for="Taetigkeiten" class="form-control" asp-items="ViewBag.TaetigkeitenList"></select>
     </div>
-    <div class="form-group">
-        <label asp-for="StartDate" class="control-label"></label>
-        <input asp-for="StartDate" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="EndDate" class="control-label"></label>
-        <input asp-for="EndDate" class="form-control" />
-    </div>
-
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>

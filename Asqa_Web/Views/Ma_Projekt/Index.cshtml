@@ -11,6 +11,10 @@
 
 <h2>@ViewData["Title"]</h2>
 
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -20,6 +24,7 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Taetigkeiten</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -29,14 +34,15 @@
                 <td>@item.MaNachname</td>
                 <td>@item.Proj_Name</td>
                 <td>@item.Rolle</td>
-                <td>@item.StartDate.ToShortDateString()</td>
-                <td>@item.EndDate?.ToShortDateString()</td>
+                <td>@item.StartDate.ToString("dd.MM.yyyy")</td>
+                <td>@item.EndDate?.ToString("dd.MM.yyyy")</td>
                 <td>@item.Taetigkeiten</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
-
-<div>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</div>

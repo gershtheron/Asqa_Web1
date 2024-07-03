@@ -6,6 +6,9 @@ namespace Asqa_Web.Models
     {
         public Guid Ma_id { get; set; }
         public int Proj_id { get; set; }
+
+        public string? MaNachname { get; set; }
+
         public string? Ma_rolle { get; set; }
         public DateTime Start_date { get; set; }
         public DateTime? End_date { get; set; }
@@ -13,6 +16,9 @@ namespace Asqa_Web.Models
 
         public List<SelectListItem>? MitarbeiterList { get; set; }
         public List<SelectListItem>? ProjektList { get; set; }
+
+       
+
 
     }
 }
