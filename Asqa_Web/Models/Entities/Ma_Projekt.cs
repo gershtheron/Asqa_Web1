@@ -22,6 +22,7 @@ namespace Asqa_Web.Models.Entities
 
         public string? Rolle { get; set; }
 
+
        
         public DateTime StartDate { get; set; }
 

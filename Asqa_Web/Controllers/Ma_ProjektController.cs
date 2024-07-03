@@ -1,4 +1,5 @@
 ﻿using Asqa_Web.Data;
+using Asqa_Web.Migrations;
 using Asqa_Web.Models;
 using Asqa_Web.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +60,10 @@ namespace Asqa_Web.Controllers
             try
             {
                 var mitarbeiter = await _context.Mitarbeiter.FindAsync(viewModel.Ma_id);
-                if (mitarbeiter == null)
+                var projekt = await _context.Projekten.FindAsync(viewModel.Proj_id);
+
+
+                if (mitarbeiter == null || projekt == null)
                 {
                     ModelState.AddModelError("", "Mitarbeiter not found.");
                     return View(viewModel);
@@ -73,7 +77,9 @@ namespace Asqa_Web.Controllers
                     StartDate = viewModel.Start_date,
                     EndDate = viewModel.End_date,
                     Taetigkeiten = viewModel.Taetigkeiten,
+                    Proj_Name = projekt.Proj_Name,
                     MaNachname = mitarbeiter.Ma_Nachname  // Set the MaNachname
+                    
                 };
 
                 _context.Ma_Projekte.Add(ma_Projekt);
