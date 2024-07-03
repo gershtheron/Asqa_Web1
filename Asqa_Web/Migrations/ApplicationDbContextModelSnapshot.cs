@@ -43,7 +43,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ausbildungen");
+                    b.ToTable("Ausbildungen", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Ma_Projekt", b =>
@@ -84,7 +84,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasIndex("ProjektId");
 
-                    b.ToTable("Ma_Projekte");
+                    b.ToTable("Ma_Projekte", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarb_Projekt", b =>
@@ -122,7 +122,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasIndex("Proj_id");
 
-                    b.ToTable("Mitarb_Projekte");
+                    b.ToTable("Mitarb_Projekte", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarbeiter", b =>
@@ -148,7 +148,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mitarbeiter");
+                    b.ToTable("Mitarbeiter", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Projekten", b =>
@@ -164,7 +164,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projekten");
+                    b.ToTable("Projekten", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Rolle", b =>
@@ -180,7 +180,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rollen");
+                    b.ToTable("Rollen", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Sprache", b =>
@@ -196,7 +196,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sprache");
+                    b.ToTable("Sprache", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Taetigkeit", b =>
@@ -212,7 +212,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Taetigkeiten");
+                    b.ToTable("Taetigkeiten", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Technologie", b =>
@@ -228,7 +228,7 @@ namespace Asqa_Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Technologie");
+                    b.ToTable("Technologie", (string)null);
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Ma_Projekt", b =>

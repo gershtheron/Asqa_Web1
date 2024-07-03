@@ -33,7 +33,7 @@
             <tr>
                 <td>@item.MaNachname</td>
                 <td>@item.Proj_Name</td>
-                <td>@item.Rolle</td>
+                <td>@item.Rolle?.Rolle_name</td> <!-- Ensure this column is correctly set -->
                 <td>@item.StartDate.ToString("dd.MM.yyyy")</td>
                 <td>@item.EndDate?.ToString("dd.MM.yyyy")</td>
                 <td>@item.Taetigkeiten</td>

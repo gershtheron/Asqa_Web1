@@ -6,6 +6,7 @@ namespace Asqa_Web.Models
     {
         public Guid Ma_id { get; set; }
         public int Proj_id { get; set; }
+        public int RolleId { get; set; }  // Added RolleId 1
 
         public string? MaNachname { get; set; }
 
@@ -17,7 +18,8 @@ namespace Asqa_Web.Models
         public List<SelectListItem>? MitarbeiterList { get; set; }
         public List<SelectListItem>? ProjektList { get; set; }
 
-       
+        public List<SelectListItem>? RolleList { get; set; }  // Added RolleList 2
+
 
 
 

@@ -23,6 +23,8 @@ namespace Asqa_Web.Controllers
             var ma_Projekte = await _context.Ma_Projekte
                 .Include(m => m.Mitarbeiter)
                 .Include(p => p.Projekten)
+                            .Include(r => r.Rolle)  // Include the role information 3
+
                 .ToListAsync();
             return View(ma_Projekte);
         }
@@ -61,6 +63,7 @@ namespace Asqa_Web.Controllers
             {
                 var mitarbeiter = await _context.Mitarbeiter.FindAsync(viewModel.Ma_id);
                 var projekt = await _context.Projekten.FindAsync(viewModel.Proj_id);
+                var rolle = await _context.Rollen.FindAsync(viewModel.RolleId); //4th change
 
 
                 if (mitarbeiter == null || projekt == null)
@@ -73,7 +76,9 @@ namespace Asqa_Web.Controllers
                 {
                     MitarbeiterId = viewModel.Ma_id,
                     ProjektId = viewModel.Proj_id,
-                    Rolle = viewModel.Ma_rolle,
+                    RolleId = viewModel.RolleId,
+
+                   // Rolle = rolle.Rolle_name,
                     StartDate = viewModel.Start_date,
                     EndDate = viewModel.End_date,
                     Taetigkeiten = viewModel.Taetigkeiten,
