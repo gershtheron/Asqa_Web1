@@ -76,29 +76,38 @@ namespace Asqa_Web.Controllers
                 })
                 .ToListAsync();
 
-            var model = new SelectProjektenViewModel
+            var model = new CombinedProjektenMitarbeiterViewModel
             {
-                ProjektenList = projektenList
+                SelectProjektenViewModel = new SelectProjektenViewModel
+                {
+                    ProjektenList = projektenList
+                }
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Select(SelectProjektenViewModel model)
+        public async Task<IActionResult> Select(CombinedProjektenMitarbeiterViewModel model)
         {
-            if (ModelState.IsValid && model.SelectedProjektenId != 0)
+            if (ModelState.IsValid && model.SelectProjektenViewModel.SelectedProjektenId != 0)
             {
                 var selectedProjekten = await dbContext.Projekten
-                    .FirstOrDefaultAsync(p => p.Id == model.SelectedProjektenId);
+
+                     .Include(p => p.Ma_Projekte)
+                .ThenInclude(mp => mp.Mitarbeiter)
+                    .FirstOrDefaultAsync(p => p.Id == model.SelectProjektenViewModel.SelectedProjektenId);
 
                 if (selectedProjekten != null)
                 {
-                    model.Proj_Name = selectedProjekten.Proj_Name;
+                    model.SelectProjektenViewModel.Proj_Name = selectedProjekten.Proj_Name;
+
+                    // Load the Ma_Projekt details
+                    model.Ma_Projekte = selectedProjekten.Ma_Projekte.ToList();
                 }
             }
 
-            model.ProjektenList = await dbContext.Projekten
+            model.SelectProjektenViewModel.ProjektenList = await dbContext.Projekten
                 .Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
