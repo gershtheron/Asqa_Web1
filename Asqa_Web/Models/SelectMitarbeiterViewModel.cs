@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Asqa_Web.Models.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,7 @@ namespace Asqa_Web.Models
         public string? Ma_FirmaRolle { get; set; }
         public string? Ma_ImagePath { get; set; }
 
+        public List<Ma_Projekt> Projekte { get; set; } = new List<Ma_Projekt>();
 
     }
 

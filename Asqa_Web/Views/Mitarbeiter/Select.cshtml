@@ -5,9 +5,10 @@
 }
 @model Asqa_Web.Models.SelectMitarbeiterViewModel
 
+
 <h1>Select Mitarbeiter</h1>
 
-<form asp-action="Select"  method="post">
+<form asp-action="Select" method="post">
     <div class="form-group">
         <label for="SelectedMitarbeiterId" class="mr-2">Select Mitarbeiter</label>
         <div class="input-group">
@@ -17,7 +18,6 @@
             <div class="input-group-append">
                 <button type="submit" class="btn btn-primary">Select</button>
                 <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Mitarbeiter")'">Add New Mitarbeiter</button>
-
             </div>
         </div>
     </div>
@@ -44,12 +44,43 @@
             <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GeneratePdf", "Mitarbeiter", new { id = Model.SelectedMitarbeiterId })'">Generate PDF</button>
         </div>
 
-      
-
-
-
+        <div class="mt-4">
+            <h3>Projekte</h3>
+            @if (Model.Projekte != null && Model.Projekte.Count > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Projekt Name</th>
+                            <th>Rolle</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Taetigkeiten</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var projekt in Model.Projekte)
+                        {
+                            <tr>
+                                <td>@projekt.Proj_Name</td>
+                                <td>@projekt.Rolle?.Rolle_name</td>
+                                <td>@projekt.StartDate.ToShortDateString()</td>
+                                <td>@projekt.EndDate?.ToShortDateString()</td>
+                                <td>@projekt.Taetigkeiten</td>
+                            </tr>
+                        }
+                   
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No projects found for this Mitarbeiter.</p>
+            }
+        </div>
     </div>
 }
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
