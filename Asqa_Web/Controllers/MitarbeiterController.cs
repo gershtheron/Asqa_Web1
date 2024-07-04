@@ -52,6 +52,9 @@ namespace Asqa_Web.Controllers
             if (ModelState.IsValid && model.SelectedMitarbeiterId != Guid.Empty)
             {
                 var selectedMitarbeiter = await dbContext.Mitarbeiter
+
+                      .Include(m => m.Ma_Projekte)
+                .ThenInclude(mp => mp.Projekten)
                     .FirstOrDefaultAsync(m => m.Id == model.SelectedMitarbeiterId);
 
                 if (selectedMitarbeiter != null)
@@ -61,6 +64,15 @@ namespace Asqa_Web.Controllers
                     model.Ma_Gebjahr = selectedMitarbeiter.Ma_Gebjahr;
                     model.Ma_FirmaRolle = selectedMitarbeiter.Ma_FirmaRolle;
                     model.Ma_ImagePath = selectedMitarbeiter.Ma_ImagePath;
+
+                    model.Projekte = selectedMitarbeiter.Ma_Projekte.Select(mp => new Ma_Projekt
+                {
+                    Proj_Name = mp.Projekten.Proj_Name,
+                    Rolle = mp.Rolle,
+                    StartDate = mp.StartDate,
+                    EndDate = mp.EndDate,
+                    Taetigkeiten = mp.Taetigkeiten
+                }).ToList();
                 }
             }
 
