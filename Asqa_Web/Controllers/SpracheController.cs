@@ -69,5 +69,60 @@ namespace Asqa_Web.Controllers
 
             return RedirectToAction("Add");
         }
+
+
+
+
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var sprache = await _context.Sprache.FindAsync(id);
+            if (sprache == null)
+            {
+                return NotFound();
+            }
+            return View(sprache);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Sprache sprache)
+        {
+            if (id != sprache.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(sprache);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SpracheExists(sprache.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(sprache);
+        }
+
+        private bool SpracheExists(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
