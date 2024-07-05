@@ -1,4 +1,4 @@
-﻿@*
+﻿why is the success@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -39,7 +39,7 @@
     @if (TempData["DuplicateEntry"] != null)
     {
         <script>
-            alert("Sprache already exists.");
+            alert("Sprache already exists!");
             document.getElementById('spracheForm').reset();
         </script>
     }
@@ -47,6 +47,7 @@
     @if (TempData["SuccessMessage"] != null)
     {
         <script>
+            alert("@TempData["SuccessMessage"]");  // Display success message as alert
             document.getElementById('spracheForm').reset();
         </script>
     }
