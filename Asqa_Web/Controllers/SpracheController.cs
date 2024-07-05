@@ -1,4 +1,5 @@
 ﻿using Asqa_Web.Data;
+using Asqa_Web.Migrations;
 using Asqa_Web.Models;
 using Asqa_Web.Models.Entities;
 using iText.Commons.Actions.Contexts;
@@ -56,7 +57,7 @@ namespace Asqa_Web.Controllers
                 return View(viewModel);
             }
 
-            var sprache = new Sprache
+            var sprache = new Models.Entities.Sprache
             {
                 Sprache_name = viewModel.Sprache_name
             };
@@ -90,7 +91,7 @@ namespace Asqa_Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Sprache sprache)
+        public async Task<IActionResult> Edit(int id, Models.Entities.Sprache sprache)
         {
             if (id != sprache.Id)
             {
@@ -120,9 +121,45 @@ namespace Asqa_Web.Controllers
             return View(sprache);
         }
 
+      
+
+
+
+
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var sprache = await _context.Sprache
+                .FirstOrDefaultAsync(s => s.Id == id);
+            if (sprache == null)
+            {
+                return NotFound();
+            }
+
+            return View(sprache);
+        }
+
+
+
+
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var sprache = await _context.Sprache.FindAsync(id);
+            _context.Sprache.Remove(sprache);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
         private bool SpracheExists(int id)
         {
-            throw new NotImplementedException();
+            return _context.Sprache.Any(e => e.Id == id);
         }
     }
 }
