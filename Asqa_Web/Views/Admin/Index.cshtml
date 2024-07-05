@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Asqa_Web.Models.KompetenzViewModel>
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<ul class="nav flex-column">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Rolle" asp-action="Index">Rolle</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Taetigkeit" asp-action="Index">Taetigkeit</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Kompetenz" asp-action="Index">Kompetenz</a>
+    </li>
+</ul>
