@@ -27,6 +27,9 @@ namespace Asqa_Web.Data
         public DbSet<Rolle> Rollen { get; set; }
         public DbSet<Taetigkeit> Taetigkeiten { get; set; }
 
+        public DbSet<Kompetenz> Kompetenzen { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Ma_Projekt>()
@@ -40,6 +43,21 @@ namespace Asqa_Web.Data
                 .HasForeignKey(mp => mp.ProjektId);
 
             base.OnModelCreating(modelBuilder);
+
+
+            // Seed data
+            modelBuilder.Entity<Kompetenz>().HasData(
+            new Kompetenz { Id = 1, Komp_name = "Muttersprache" },
+            new Kompetenz { Id = 2, Komp_name = "Sehr Gut" },
+            new Kompetenz { Id = 3, Komp_name = "Gut" },
+            new Kompetenz { Id = 4, Komp_name = "Grundkenntnisse" },
+            new Kompetenz { Id = 5, Komp_name = "Fortgeschritten" },
+            new Kompetenz { Id = 6, Komp_name = "Expertenkenntnisse" }
+
+
+            );
+
+
         }
 
     }
