@@ -38,6 +38,8 @@ namespace Asqa_Web.Controllers
             return View(taetigkeit);
         }
 
+
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -52,6 +54,10 @@ namespace Asqa_Web.Controllers
             }
             return View(taetigkeit);
         }
+
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Taetigkeit taetigkeit)
