@@ -10,23 +10,42 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<ul class="nav flex-column">
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Rolle" asp-action="Index">Rolle</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Taetigkeit" asp-action="Index">Taetigkeit</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Kompetenz" asp-action="Index">Kompetenz</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Sprache" asp-action="Index">Sprache</a>
-    </li>
-</ul>
+<style>
+	/* .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;  Adjust the gap between buttons as needed 
+        flex-wrap: wrap;
+		}*/
 
-<div class="input-group-append">
+	/*  .center-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;  Adjust the height as needed
+		}*/
+</style>
 
+<div class="center-container">
 
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Mitarbeiter")'">Add New Mitarbeiter</button>
+<div class="button-container">
+    <div class="nav-item mb-2">
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Rolle")'">Rolle</button>
+    </div>
+    <div class="nav-item mb-2">
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Taetigkeit")'">Taetigkeit</button>
+    </div>
+    <div class="nav-item mb-2">
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Kompetenz")'">Kompetenz</button>
+    </div>
+    <div class="nav-item mb-2">
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Sprache")'">Sprache</button>
+    </div>
+
+	<div class="input-group-append">
+		<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Mitarbeiter")'">Add New Mitarbeiter</button>
+	</div>
 </div>
+</div>
+
