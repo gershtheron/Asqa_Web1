@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Asqa_Web.Models.AusbildungenViewModel
+@{
+    ViewData["Title"] = "Edit Ausbildung";
+}
+
+<h2>Edit Ausbildung</h2>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Ausb_name" class="control-label"></label>
+        <input asp-for="Ausb_name" class="form-control" />
+        <span asp-validation-for="Ausb_name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Ausb_institut" class="control-label"></label>
+        <input asp-for="Ausb_institut" class="form-control" />
+        <span asp-validation-for="Ausb_institut" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Ausb_jahr" class="control-label"></label>
+        <input asp-for="Ausb_jahr" class="form-control" />
+        <span asp-validation-for="Ausb_jahr" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

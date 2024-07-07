@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Asqa_Web.Models.AusbildungenViewModel>
+
+@{
+    ViewData["Title"] = "Ausbildungen List";
+}
+
+<h2>Ausbildungen List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Ausb_name)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Ausb_institut)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Ausb_jahr)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Ausb_name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ausb_institut)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ausb_jahr)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
