@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Asqa_Web.Models.Entities.Ausbildungen
+
+@{
+    ViewData["Title"] = "Delete Ausbildung";
+}
+
+<h2>Delete Ausbildung</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ausbildung</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ausb_name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ausb_name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ausb_institut)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ausb_institut)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ausb_jahr)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ausb_jahr)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>

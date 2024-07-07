@@ -4,13 +4,14 @@
 @{
 }
 @model Asqa_Web.Models.SelectMitarbeiterViewModel
+<div class="text-center">
+    <img src="~/images/AsqaPersonal2.jpeg" alt="Welcome Image" style="max-width: 80%; height: auto;" />
 
-
-<h1>Select Mitarbeiter</h1>
+<h1></h1>
 
 <form asp-action="Select" method="post">
     <div class="form-group">
-        <label for="SelectedMitarbeiterId" class="mr-2">Select Mitarbeiter</label>
+        <label for="SelectedMitarbeiterId" class="mr-2"></label>
         <div class="input-group">
             <select asp-for="SelectedMitarbeiterId" class="form-control" asp-items="Model.MitarbeiterList" style="max-width: 300px;">
                 <option value="">-- Select Mitarbeiter --</option>
