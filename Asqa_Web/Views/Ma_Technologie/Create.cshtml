@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Asqa_Web.Models.AddMa_TechnologieViewModel
+
+@{
+    ViewData["Title"] = "Create Ma_Technologie";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="MitarbeiterId" class="control-label">Mitarbeiter</label>
+        <select asp-for="MitarbeiterId" class="form-control" asp-items="Model.MitarbeiterList"></select>
+        <span asp-validation-for="MitarbeiterId" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="TechnologieId" class="control-label">Technologie</label>
+        <select asp-for="TechnologieId" class="form-control" asp-items="Model.TechnologieList"></select>
+        <span asp-validation-for="TechnologieId" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="KompetenzId" class="control-label">Kompetenz</label>
+        <select asp-for="KompetenzId" class="form-control" asp-items="Model.KompetenzList"></select>
+        <span asp-validation-for="KompetenzId" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="SeitJahr" class="control-label"></label>
+        <input asp-for="SeitJahr" class="form-control" />
+        <span asp-validation-for="SeitJahr" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

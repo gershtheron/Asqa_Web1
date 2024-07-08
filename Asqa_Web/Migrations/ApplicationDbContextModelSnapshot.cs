@@ -138,6 +138,37 @@ namespace Asqa_Web.Migrations
                     b.ToTable("Ma_Projekte");
                 });
 
+            modelBuilder.Entity("Asqa_Web.Models.Entities.Ma_Technologie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("KompetenzId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("MitarbeiterId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("SeitJahr")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("TechnologieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KompetenzId");
+
+                    b.HasIndex("MitarbeiterId");
+
+                    b.HasIndex("TechnologieId");
+
+                    b.ToTable("Ma_Technologien");
+                });
+
             modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarb_Projekt", b =>
                 {
                     b.Property<int>("Id")
@@ -307,6 +338,33 @@ namespace Asqa_Web.Migrations
                     b.Navigation("Projekten");
 
                     b.Navigation("Rolle");
+                });
+
+            modelBuilder.Entity("Asqa_Web.Models.Entities.Ma_Technologie", b =>
+                {
+                    b.HasOne("Asqa_Web.Models.Entities.Kompetenz", "Kompetenz")
+                        .WithMany()
+                        .HasForeignKey("KompetenzId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Asqa_Web.Models.Entities.Mitarbeiter", "Mitarbeiter")
+                        .WithMany()
+                        .HasForeignKey("MitarbeiterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Asqa_Web.Models.Entities.Technologie", "Technologie")
+                        .WithMany()
+                        .HasForeignKey("TechnologieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kompetenz");
+
+                    b.Navigation("Mitarbeiter");
+
+                    b.Navigation("Technologie");
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarb_Projekt", b =>
