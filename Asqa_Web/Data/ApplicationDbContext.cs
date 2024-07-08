@@ -29,6 +29,8 @@ namespace Asqa_Web.Data
 
         public DbSet<Kompetenz> Kompetenzen { get; set; }
 
+        public DbSet<Ma_Technologie> Ma_Technologien { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
