@@ -17,6 +17,7 @@ namespace Asqa_Web.Models
         public string? Ma_ImagePath { get; set; }
 
         public List<Ma_Projekt> Projekte { get; set; } = new List<Ma_Projekt>();
+        public List<Ma_Technologie>? Ma_Technologien { get; set; } // 
 
     }
 

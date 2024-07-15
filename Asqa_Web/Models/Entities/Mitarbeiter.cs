@@ -10,5 +10,8 @@
         public string? Ma_ImagePath { get; set; } // Add this property
         public virtual ICollection<Ma_Projekt> Ma_Projekte { get; set; } = new List<Ma_Projekt>();
 
+        public virtual ICollection<Ma_Technologie> Ma_Technologien { get; set; } // Add this line
+
+
     }
 }

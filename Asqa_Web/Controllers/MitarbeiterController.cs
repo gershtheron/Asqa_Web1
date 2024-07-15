@@ -55,6 +55,10 @@ namespace Asqa_Web.Controllers
 
                       .Include(m => m.Ma_Projekte)
                 .ThenInclude(mp => mp.Projekten)
+                 .Include(m => m.Ma_Technologien)
+                    .ThenInclude(mt => mt.Technologie)
+                .Include(m => m.Ma_Technologien)
+                    .ThenInclude(mt => mt.Kompetenz)
                     .FirstOrDefaultAsync(m => m.Id == model.SelectedMitarbeiterId);
 
                 if (selectedMitarbeiter != null)
@@ -73,6 +77,9 @@ namespace Asqa_Web.Controllers
                     EndDate = mp.EndDate,
                     Taetigkeiten = mp.Taetigkeiten
                 }).ToList();
+
+                    model.Ma_Technologien = selectedMitarbeiter.Ma_Technologien.ToList();
+
                 }
             }
 
