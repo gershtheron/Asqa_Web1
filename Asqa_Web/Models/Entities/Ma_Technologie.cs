@@ -7,7 +7,6 @@ namespace Asqa_Web.Models.Entities
         public int Id { get; set; }
         public Guid MitarbeiterId { get; set; }
         public int TechnologieId { get; set; }
-
         public int KompetenzId { get; set; }
         public DateTime SeitJahr { get; set; }
 

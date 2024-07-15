@@ -9,7 +9,7 @@
 
 <h1></h1>
 
-<form asp-action="Select" method="post">
+    <form asp-action="Select" method="post" class="center-form">
     <div class="form-group">
         <label for="SelectedMitarbeiterId" class="mr-2"></label>
         <div class="input-group">
@@ -78,9 +78,78 @@
                 <p>No projects found for this Mitarbeiter.</p>
             }
         </div>
+
+
+            <div class="mt-4">
+                <h3>Technologien</h3>
+                @if (Model.Ma_Technologien != null && Model.Ma_Technologien.Count > 0)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Technologie</th>
+                                <th>Kompetenz</th>
+                                <th>Seit Jahr</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var technologie in Model.Ma_Technologien)
+                            {
+                                <tr>
+                                    <td>@technologie.Technologie?.Tech_name</td>
+                                    <td>@technologie.Kompetenz?.Komp_name</td>
+                                    <td>@technologie.SeitJahr.ToShortDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No technologies found for this Mitarbeiter.</p>
+                }
+            </div>
+
+
+
+
+
     </div>
 }
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+
+
+
+
+
+    <style>
+        .center-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .center-form .form-group {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .center-form .input-group {
+                width: 100%;
+            }
+
+            .center-form .input-group-append {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+                .center-form .input-group-append button {
+                    margin: 0 5px;
+                }
+    </style>
