@@ -53,12 +53,16 @@ namespace Asqa_Web.Controllers
             {
                 var selectedMitarbeiter = await dbContext.Mitarbeiter
 
-                      .Include(m => m.Ma_Projekte)
+                     .Include(m => m.Ma_Projekte)
                 .ThenInclude(mp => mp.Projekten)
-                 .Include(m => m.Ma_Technologien)
-                    .ThenInclude(mt => mt.Technologie)
-                .Include(m => m.Ma_Technologien)
-                    .ThenInclude(mt => mt.Kompetenz)
+            .Include(m => m.Ma_Projekte)
+                .ThenInclude(mp => mp.Rolle)  // Ensure Rolle is included
+            .Include(m => m.Ma_Technologien)
+                .ThenInclude(mt => mt.Technologie)
+            .Include(m => m.Ma_Technologien)
+                .ThenInclude(mt => mt.Kompetenz)
+                    //  .Include(r => r.Rolle)  // Include the role information 3
+
                     .FirstOrDefaultAsync(m => m.Id == model.SelectedMitarbeiterId);
 
                 if (selectedMitarbeiter != null)
@@ -79,6 +83,7 @@ namespace Asqa_Web.Controllers
                 }).ToList();
 
                     model.Ma_Technologien = selectedMitarbeiter.Ma_Technologien.ToList();
+
 
                 }
             }
