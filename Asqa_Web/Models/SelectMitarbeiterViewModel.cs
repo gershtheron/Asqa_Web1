@@ -18,6 +18,7 @@ namespace Asqa_Web.Models
 
         public List<Ma_Projekt> Projekte { get; set; } = new List<Ma_Projekt>();
         public List<Ma_Technologie>? Ma_Technologien { get; set; } // 
+        public List<SelectListItem>? RolleList { get; set; }  // Added RolleList 2
 
     }
 

@@ -44,6 +44,8 @@ namespace Asqa_Web.Data
                 .WithMany(p => p.Ma_Projekte)
                 .HasForeignKey(mp => mp.ProjektId);
 
+
+
             base.OnModelCreating(modelBuilder);
 
 
