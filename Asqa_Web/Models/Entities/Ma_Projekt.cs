@@ -31,6 +31,12 @@ namespace Asqa_Web.Models.Entities
         public DateTime? EndDate { get; set; }
 
         public string? Taetigkeiten { get; set; }
+        public string? Taetigkeit1 { get; set; }
+        public string? Taetigkeit2 { get; set; }
+        public string? Taetigkeit3 { get; set; }
+        public string? Taetigkeit4 { get; set; }
+        public string? Taetigkeit5 { get; set; }
+        public string? Taetigkeit6 { get; set; }
 
         [ForeignKey("MitarbeiterId")]
         public virtual Mitarbeiter? Mitarbeiter { get; set; }

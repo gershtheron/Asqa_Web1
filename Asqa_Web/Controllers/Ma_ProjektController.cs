@@ -23,7 +23,7 @@ namespace Asqa_Web.Controllers
             var ma_Projekte = await _context.Ma_Projekte
                 .Include(m => m.Mitarbeiter)
                 .Include(p => p.Projekten)
-                            .Include(r => r.Rolle)  // Include the role information 3
+                .Include(r => r.Rolle)  // Include the role information 3
 
                 .ToListAsync();
             return View(ma_Projekte);
@@ -53,8 +53,8 @@ namespace Asqa_Web.Controllers
             {
                 ViewData["MitarbeiterList"] = new SelectList(_context.Mitarbeiter, "Id", "Ma_Nachname", viewModel.Ma_id);
                 ViewData["ProjektList"] = new SelectList(_context.Projekten, "Id", "Proj_Name", viewModel.Proj_id);
-                ViewData["RolleList"] = new SelectList(_context.Rollen, "Id", "Rolle_name", viewModel.Ma_rolle);
-                ViewData["TaetigkeitenList"] = new SelectList(_context.Taetigkeiten, "Id", "Description", viewModel.Taetigkeiten);
+                ViewData["RolleList"] = new SelectList(_context.Rollen, "Id", "Rolle_name", viewModel.RolleId);
+                ViewData["TaetigkeitenList"] = new SelectList(_context.Taetigkeiten, "Id", "Description", viewModel.Taetigkeit1);
 
                 return View(viewModel);
             }
@@ -83,8 +83,13 @@ namespace Asqa_Web.Controllers
                     EndDate = viewModel.End_date,
                     Taetigkeiten = viewModel.Taetigkeiten,
                     Proj_Name = projekt.Proj_Name,
-                    MaNachname = mitarbeiter.Ma_Nachname  // Set the MaNachname
-                    
+                    MaNachname = mitarbeiter.Ma_Nachname,  // Set the MaNachname
+                      Taetigkeit1 = viewModel.Taetigkeit1,
+                    Taetigkeit2 = viewModel.Taetigkeit2,
+                    Taetigkeit3 = viewModel.Taetigkeit3,
+                    Taetigkeit4 = viewModel.Taetigkeit4,
+                    Taetigkeit5 = viewModel.Taetigkeit5,
+                    Taetigkeit6 = viewModel.Taetigkeit6
                 };
 
                 _context.Ma_Projekte.Add(ma_Projekt);
@@ -96,8 +101,8 @@ namespace Asqa_Web.Controllers
                 ModelState.AddModelError("", $"Unable to save changes: {ex.Message}");
                 ViewData["MitarbeiterList"] = new SelectList(_context.Mitarbeiter, "Id", "Ma_Nachname", viewModel.Ma_id);
                 ViewData["ProjektList"] = new SelectList(_context.Projekten, "Id", "Proj_Name", viewModel.Proj_id);
-                ViewData["RolleList"] = new SelectList(_context.Rollen, "Id", "Rolle_name", viewModel.Ma_rolle);
-                ViewData["TaetigkeitenList"] = new SelectList(_context.Taetigkeiten, "Id", "Description", viewModel.Taetigkeiten);
+                ViewData["RolleList"] = new SelectList(_context.Rollen, "Id", "Rolle_name", viewModel.RolleId);
+                ViewData["TaetigkeitenList"] = new SelectList(_context.Taetigkeiten, "Id", "Description", viewModel.Taetigkeit1);
                 return View(viewModel);
             }
         }
