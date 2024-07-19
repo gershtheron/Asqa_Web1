@@ -49,7 +49,7 @@
                         <tr>
                             <td>@projekt.Mitarbeiter.Ma_Nachname</td>
                             <td>@projekt.Mitarbeiter.Ma_Vorname</td>
-                            <td>@projekt.Rolle</td>
+                            <td>@projekt.Rolle?.Rolle_name</td>
                             <td>@projekt.StartDate.ToString("dd.MM.yyyy")</td>
                             <td>@projekt.EndDate?.ToString("dd.MM.yyyy")</td>
                             <td>@projekt.Taetigkeiten</td>

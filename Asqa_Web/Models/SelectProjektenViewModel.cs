@@ -8,5 +8,7 @@ namespace Asqa_Web.Models
         public List<SelectListItem>? ProjektenList { get; set; }
         public int SelectedProjektenId { get; set; }
         public string? Proj_Name { get; set; }
+
+
     }
 }
