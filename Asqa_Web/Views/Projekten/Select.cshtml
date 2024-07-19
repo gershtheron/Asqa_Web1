@@ -6,20 +6,44 @@
 
 @model Asqa_Web.Models.CombinedProjektenMitarbeiterViewModel
 
-<h1>Select Projekten</h1>
+<div class="text-center">
+    <img src="~/images/AsqaPersonal2.jpeg" alt="Welcome Image" style="max-width: 80%; height: auto;" />
 
-<form asp-action="Select" method="post">
-    <div class="form-group">
-        <label for="SelectedProjektenId">Select Projekt</label>
-        <select asp-for="SelectProjektenViewModel.SelectedProjektenId" class="form-control" asp-items="Model.SelectProjektenViewModel.ProjektenList">
-            <option value="">-- Select Projekt --</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Select</button>
+<h1></h1>
+    <form asp-action="Select" method="post" class="center-form">
+        <div class="form-group">
+            <label for="SelectedProjektenId" class="mr-2"></label>
+            <div class="input-group">
+                <select asp-for="SelectProjektenViewModel.SelectedProjektenId" class="form-control" asp-items="Model.SelectProjektenViewModel.ProjektenList" style="max-width: 300px;">
+                    <option value="">-- Select Projekt --</option>
+                </select>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Select</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Projekten")'">Add Projekt</button>
 
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Projekten")'">Add Projekt</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
-</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @if (Model.SelectProjektenViewModel.SelectedProjektenId != 0)
 {
