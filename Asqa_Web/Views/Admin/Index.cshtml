@@ -10,45 +10,102 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<style>
-	/* .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;  Adjust the gap between buttons as needed 
-        flex-wrap: wrap;
-		}*/
-
-	/*  .center-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 70vh;  Adjust the height as needed
-		}*/
-</style>
-
-<div class="center-container">
-
-<div class="button-container">
-    <div class="nav-item mb-2">
-        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Rolle")'">Rolle</button>
+<div class="admin-dashboard">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <div class="nav-item">
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Rolle")'">Rolle</button>
+                </div>
+            </li>
+            <li>
+                <div class="nav-item">
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Taetigkeit")'">Taetigkeit</button>
+                </div>
+            </li>
+            <li>
+                <div class="nav-item">
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Kompetenz")'">Kompetenz</button>
+                </div>
+            </li>
+            <li>
+                <div class="nav-item">
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Sprache")'">Sprache</button>
+                </div>
+            </li>
+            <li>
+                <div class="nav-item">
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Ausbildungen")'">Ausbildung</button>
+                </div>
+            </li>
+            <li>
+                <div class="nav-item">
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Mitarbeiter")'">Add New Mitarbeiter</button>
+                </div>
+            </li>
+        </ul>
     </div>
-    <div class="nav-item mb-2">
-        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Taetigkeit")'">Taetigkeit</button>
-    </div>
-    <div class="nav-item mb-2">
-        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Kompetenz")'">Kompetenz</button>
-    </div>
-    <div class="nav-item mb-2">
-        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Sprache")'">Sprache</button>
-    </div>
-        <div class="nav-item mb-2">
-            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Ausbildungen")'">Ausbildung</button>
+    <div class="content">
+        <div class="center-container">
+            <div class="button-container">
+                <!-- Add other buttons or content here if necessary -->
+            </div>
         </div>
-
-	<div class="input-group-append">
-		<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Mitarbeiter")'">Add New Mitarbeiter</button>
-	</div>
-</div>
+    </div>
 </div>
 
+<style>
+    .admin-dashboard {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 200px;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px;
+    }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .sidebar ul li {
+                margin: 10px 0; /* Adjust margin between buttons */
+            }
+
+    .nav-item {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-primary {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%; /* Ensures button width fits its container */
+        text-align: center;
+    }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+    .content {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    .center-container {
+        margin-top: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+</style>
