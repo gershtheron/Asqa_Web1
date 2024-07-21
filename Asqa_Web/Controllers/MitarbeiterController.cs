@@ -68,6 +68,7 @@ namespace Asqa_Web.Controllers
                      .Include(m => m.Ma_Projekte)
                 .ThenInclude(mp => mp.Projekten)
             .Include(m => m.Ma_Projekte)
+
                 .ThenInclude(mp => mp.Rolle)  // Ensure Rolle is included
             .Include(m => m.Ma_Technologien)
                 .ThenInclude(mt => mt.Technologie)
@@ -91,7 +92,7 @@ namespace Asqa_Web.Controllers
                         Rolle = mp.Rolle,
                         StartDate = mp.StartDate,
                         EndDate = mp.EndDate,
-                        Taetigkeiten = mp.Taetigkeiten
+                        TaetigkeitenDescriptions = mp.TaetigkeitenDescriptions
                     }).ToList();
 
                     model.Ma_Technologien = selectedMitarbeiter.Ma_Technologien.ToList();

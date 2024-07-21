@@ -76,7 +76,20 @@
                             <td>@projekt.Rolle?.Rolle_name</td>
                             <td>@projekt.StartDate.ToString("dd.MM.yyyy")</td>
                             <td>@projekt.EndDate?.ToString("dd.MM.yyyy")</td>
-                            <td>@projekt.Taetigkeiten</td>
+                                <td>
+                                    @if (projekt.TaetigkeitenDescriptions != null && projekt.TaetigkeitenDescriptions.Any())
+                                    {
+                                        <a href="#" onclick="toggleDetails('@projekt.Id')">Details</a>
+                                        <div id="details-@projekt.Id" class="details" style="display: none;">
+                                            <ul>
+                                                @foreach (var taetigkeit in projekt.TaetigkeitenDescriptions)
+                                                {
+                                                    <li>@taetigkeit</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                </td>
                         </tr>
                     }
                 </tbody>

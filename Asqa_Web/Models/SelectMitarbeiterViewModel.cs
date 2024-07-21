@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Asqa_Web.Models
 {
@@ -19,6 +20,10 @@ namespace Asqa_Web.Models
         public List<Ma_Projekt> Projekte { get; set; } = new List<Ma_Projekt>();
         public List<Ma_Technologie>? Ma_Technologien { get; set; } // 
         public List<SelectListItem>? RolleList { get; set; }  // Added RolleList 2
+
+        [NotMapped]
+        public List<string>? TaetigkeitenDescriptions { get; set; } = new List<string>();
+        public List<Berater_Projekten> Projekten { get; set; } = new List<Berater_Projekten>();
 
     }
 

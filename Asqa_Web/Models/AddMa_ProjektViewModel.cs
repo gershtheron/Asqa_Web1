@@ -13,15 +13,12 @@ namespace Asqa_Web.Models
         public string? Ma_rolle { get; set; }
         public DateTime Start_date { get; set; }
         public DateTime? End_date { get; set; }
-        public string? Taetigkeiten { get; set; }
-
-
-        public string? Taetigkeit1 { get; set; }
-        public string? Taetigkeit2 { get; set; }
-        public string? Taetigkeit3 { get; set; }
-        public string? Taetigkeit4 { get; set; }
-        public string? Taetigkeit5 { get; set; }
-        public string? Taetigkeit6 { get; set; }
+        public int? Taetigkeit1 { get; set; }
+        public int? Taetigkeit2 { get; set; }
+        public int? Taetigkeit3 { get; set; }
+        public int? Taetigkeit4 { get; set; }
+        public int? Taetigkeit5 { get; set; }
+        public int? Taetigkeit6 { get; set; }
 
         public List<SelectListItem>? MitarbeiterList { get; set; }
         public List<SelectListItem>? ProjektList { get; set; }

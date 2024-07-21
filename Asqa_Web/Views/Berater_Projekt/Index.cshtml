@@ -3,16 +3,16 @@
 *@
 @{
 }
-@model IEnumerable<Asqa_Web.Models.Entities.Ma_Projekt>
+@model IEnumerable<Asqa_Web.Models.Entities.Berater_Projekten>
 
 @{
-    ViewData["Title"] = "Ma_Projekt List";
+    ViewData["Title"] = "Berater Projekt List";
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New Berater Projekt</a>
 </p>
 
 <table class="table">
@@ -20,7 +20,6 @@
         <tr>
             <th>Mitarbeiter Name</th>
             <th>Projekt Name</th>
-            <th>Rolle</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Taetigkeiten</th>
@@ -31,20 +30,19 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.MaNachname</td>
-                <td>@item.Proj_Name</td>
-                <td>@item.Rolle?.Rolle_name</td> <!-- Ensure this column is correctly set -->
+                <td>@item.Mitarbeiter.Ma_Nachname</td>
+                <td>@item.Projekten.Proj_Name</td>
                 <td>@item.StartDate.ToString("dd.MM.yyyy")</td>
                 <td>@item.EndDate?.ToString("dd.MM.yyyy")</td>
                 <td>
-                    @if (item.TaetigkeitenDescriptions != null && item.TaetigkeitenDescriptions.Any())
+                    @if (item.Berater_Projekt_Taetigkeiten != null && item.Berater_Projekt_Taetigkeiten.Any())
                     {
                         <a href="#" onclick="toggleDetails('@item.Id')">Details</a>
                         <div id="details-@item.Id" class="details" style="display: none;">
                             <ul>
-                                @foreach (var taetigkeit in item.TaetigkeitenDescriptions)
+                                @foreach (var taetigkeit in item.Berater_Projekt_Taetigkeiten)
                                 {
-                                    <li>@taetigkeit</li>
+                                    <li>@taetigkeit.Taetigkeit.Description</li>
                                 }
                             </ul>
                         </div>
@@ -59,3 +57,16 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script type="text/javascript">
+        function toggleDetails(id) {
+            var detailsDiv = document.getElementById("details-" + id);
+            if (detailsDiv.style.display === "none") {
+                detailsDiv.style.display = "block";
+            } else {
+                detailsDiv.style.display = "none";
+            }
+        }
+    </script>
+}
