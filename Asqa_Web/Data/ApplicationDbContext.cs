@@ -11,7 +11,9 @@ namespace Asqa_Web.Data
         {
         }
 
-       
+        public DbSet<Berater_Projekten> Berater_Projekten { get; set; }
+        public DbSet<Berater_Projekt_Taetigkeit> Berater_Projekt_Taetigkeiten { get; set; }
+
 
         public DbSet<Mitarbeiter> Mitarbeiter { get; set; }
         public DbSet<Projekten> Projekten  { get; set; }
@@ -30,6 +32,8 @@ namespace Asqa_Web.Data
         public DbSet<Kompetenz> Kompetenzen { get; set; }
 
         public DbSet<Ma_Technologie> Ma_Technologien { get; set; }
+        public DbSet<Berater_Projekten> Berater_Projekt { get; set; }
+        public DbSet<Berater_Projekt_Taetigkeit> Berater_Projekten_Taetigkeiten { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,7 +48,18 @@ namespace Asqa_Web.Data
                 .WithMany(p => p.Ma_Projekte)
                 .HasForeignKey(mp => mp.ProjektId);
 
+            modelBuilder.Entity<Berater_Projekt_Taetigkeit>()
+               .HasKey(bpt => bpt.Id);
 
+            modelBuilder.Entity<Berater_Projekt_Taetigkeit>()
+                .HasOne(bpt => bpt.Berater_Projekt)
+                .WithMany(bp => bp.Berater_Projekt_Taetigkeiten)
+                .HasForeignKey(bpt => bpt.BeraterProjektId);
+
+            modelBuilder.Entity<Berater_Projekt_Taetigkeit>()
+                .HasOne(bpt => bpt.Taetigkeit)
+                .WithMany()
+                .HasForeignKey(bpt => bpt.TaetigkeitId);
 
             base.OnModelCreating(modelBuilder);
 

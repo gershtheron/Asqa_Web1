@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Asqa_Web.Models.AddBerater_ProjektViewModel
+
+@{
+    ViewData["Title"] = "Create Berater Projekt";
+    var today = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.MitarbeiterList == null)
+{
+    <div style="color: red;">Mitarbeiter list is null!</div>
+}
+else
+{
+    <div>Mitarbeiter list is populated</div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="MitarbeiterId" class="control-label">Mitarbeiter</label>
+        <select asp-for="MitarbeiterId" class="form-control" asp-items="ViewBag.MitarbeiterList"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProjektId" class="control-label">Projekt</label>
+        <select asp-for="ProjektId" class="form-control" asp-items="ViewBag.ProjektList"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedTaetigkeiten" class="control-label">Taetigkeiten</label>
+        <select asp-for="SelectedTaetigkeiten" class="form-control" asp-items="ViewBag.TaetigkeitenList" multiple="multiple"></select>
+    </div>
+      <div class="form-group">
+        <label asp-for="SelectedTaetigkeiten" class="control-label">Taetigkeiten</label>
+        <select asp-for="SelectedTaetigkeiten" class="form-control" asp-items="ViewBag.TaetigkeitenList" multiple="multiple"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedTaetigkeiten" class="control-label">Taetigkeiten</label>
+        <select asp-for="SelectedTaetigkeiten" class="form-control" asp-items="ViewBag.TaetigkeitenList" multiple="multiple"></select>
+    </div>
+      <div class="form-group">
+        <label asp-for="SelectedTaetigkeiten" class="control-label">Taetigkeiten</label>
+        <select asp-for="SelectedTaetigkeiten" class="form-control" asp-items="ViewBag.TaetigkeitenList" multiple="multiple"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedTaetigkeiten" class="control-label">Taetigkeiten</label>
+        <select asp-for="SelectedTaetigkeiten" class="form-control" asp-items="ViewBag.TaetigkeitenList" multiple="multiple"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label">Start Date</label>
+        <input asp-for="StartDate" class="form-control" type="date" value="@today" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label">End Date</label>
+        <input asp-for="EndDate" class="form-control" type="date" value="@today" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

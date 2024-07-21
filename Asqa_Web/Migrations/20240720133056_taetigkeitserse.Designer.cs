@@ -4,6 +4,7 @@ using Asqa_Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Asqa_Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240720133056_taetigkeitserse")]
+    partial class taetigkeitserse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,58 +47,6 @@ namespace Asqa_Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ausbildungen");
-                });
-
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Berater_Projekt_Taetigkeit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BeraterProjektId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TaetigkeitId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BeraterProjektId");
-
-                    b.HasIndex("TaetigkeitId");
-
-                    b.ToTable("Berater_Projekt_Taetigkeit");
-                });
-
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Berater_Projekten", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<Guid>("MitarbeiterId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<int>("ProjektId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MitarbeiterId");
-
-                    b.HasIndex("ProjektId");
-
-                    b.ToTable("Berater_Projekten");
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Kompetenz", b =>
@@ -193,6 +144,9 @@ namespace Asqa_Web.Migrations
 
                     b.Property<int?>("Taetigkeit6")
                         .HasColumnType("int");
+
+                    b.Property<string>("TaetigkeitenDescriptions")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -392,44 +346,6 @@ namespace Asqa_Web.Migrations
                     b.ToTable("Technologie");
                 });
 
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Berater_Projekt_Taetigkeit", b =>
-                {
-                    b.HasOne("Asqa_Web.Models.Entities.Berater_Projekten", "Berater_Projekt")
-                        .WithMany("Berater_Projekt_Taetigkeiten")
-                        .HasForeignKey("BeraterProjektId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Asqa_Web.Models.Entities.Taetigkeit", "Taetigkeit")
-                        .WithMany()
-                        .HasForeignKey("TaetigkeitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Berater_Projekt");
-
-                    b.Navigation("Taetigkeit");
-                });
-
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Berater_Projekten", b =>
-                {
-                    b.HasOne("Asqa_Web.Models.Entities.Mitarbeiter", "Mitarbeiter")
-                        .WithMany()
-                        .HasForeignKey("MitarbeiterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Asqa_Web.Models.Entities.Projekten", "Projekten")
-                        .WithMany()
-                        .HasForeignKey("ProjektId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mitarbeiter");
-
-                    b.Navigation("Projekten");
-                });
-
             modelBuilder.Entity("Asqa_Web.Models.Entities.Ma_Projekt", b =>
                 {
                     b.HasOne("Asqa_Web.Models.Entities.Mitarbeiter", "Mitarbeiter")
@@ -537,11 +453,6 @@ namespace Asqa_Web.Migrations
                     b.Navigation("Mitarbeiter");
 
                     b.Navigation("Projekten");
-                });
-
-            modelBuilder.Entity("Asqa_Web.Models.Entities.Berater_Projekten", b =>
-                {
-                    b.Navigation("Berater_Projekt_Taetigkeiten");
                 });
 
             modelBuilder.Entity("Asqa_Web.Models.Entities.Mitarbeiter", b =>

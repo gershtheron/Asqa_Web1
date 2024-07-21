@@ -20,14 +20,80 @@ namespace Asqa_Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var ma_Projekte = await _context.Ma_Projekte
-                .Include(m => m.Mitarbeiter)
-                .Include(p => p.Projekten)
-                .Include(r => r.Rolle)  // Include the role information 3
+            var projects = await _context.Ma_Projekte
+               .Include(m => m.Mitarbeiter)
+               .Include(p => p.Projekten)
+               .Include(r => r.Rolle)
+               .Include(t => t.Taetigkeit1Navigation)
+               .Include(t => t.Taetigkeit2Navigation)
+               .Include(t => t.Taetigkeit3Navigation)
+               .Include(t => t.Taetigkeit4Navigation)
+               .Include(t => t.Taetigkeit5Navigation)
+               .Include(t => t.Taetigkeit6Navigation)
+               .ToListAsync();
 
-                .ToListAsync();
-            return View(ma_Projekte);
+            var viewModel = projects.Select(p => new Ma_ProjektViewModel
+            {
+                Id = p.Id,
+                MaNachname = p.Mitarbeiter?.Ma_Nachname,
+                Proj_Name = p.Projekten?.Proj_Name,
+                Rolle = p.Rolle?.Rolle_name,
+                StartDate = p.StartDate,
+                EndDate = p.EndDate,
+                TaetigkeitenDescriptions = GetTaetigkeitenDescriptions(p)
+            }).ToList();
+
+            return View(viewModel);
         }
+
+        private List<string> GetTaetigkeitenDescriptions(Ma_Projekt project)
+        {
+            var descriptions = new List<string>();
+
+            if (project.Taetigkeit1Navigation != null)
+            {
+                descriptions.Add(project.Taetigkeit1Navigation.Description);
+            }
+
+            if (project.Taetigkeit2Navigation != null)
+            {
+                descriptions.Add(project.Taetigkeit2Navigation.Description);
+            }
+
+            if (project.Taetigkeit3Navigation != null)
+            {
+                descriptions.Add(project.Taetigkeit3Navigation.Description);
+            }
+
+            if (project.Taetigkeit4Navigation != null)
+            {
+                descriptions.Add(project.Taetigkeit4Navigation.Description);
+            }
+
+            if (project.Taetigkeit5Navigation != null)
+            {
+                descriptions.Add(project.Taetigkeit5Navigation.Description);
+            }
+
+            if (project.Taetigkeit6Navigation != null)
+            {
+                descriptions.Add(project.Taetigkeit6Navigation.Description);
+            }
+
+            return descriptions;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpGet]
         public async Task<IActionResult> Create(Guid? Ma_id)
@@ -51,7 +117,7 @@ namespace Asqa_Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewData["MitarbeiterList"] = new SelectList(_context.Mitarbeiter, "Id", "Ma_Nachname", viewModel.Ma_id);
+                ViewData["MitarbeiterList"] = new SelectList(_context.Mitarbeiter, "Id", "MaNachname", viewModel.Ma_id);
                 ViewData["ProjektList"] = new SelectList(_context.Projekten, "Id", "Proj_Name", viewModel.Proj_id);
                 ViewData["RolleList"] = new SelectList(_context.Rollen, "Id", "Rolle_name", viewModel.RolleId);
                 ViewData["TaetigkeitenList"] = new SelectList(_context.Taetigkeiten, "Id", "Description", viewModel.Taetigkeit1);
@@ -59,32 +125,14 @@ namespace Asqa_Web.Controllers
                 return View(viewModel);
             }
 
-            try
-            {
-                var mitarbeiter = await _context.Mitarbeiter.FindAsync(viewModel.Ma_id);
-                var projekt = await _context.Projekten.FindAsync(viewModel.Proj_id);
-                var rolle = await _context.Rollen.FindAsync(viewModel.RolleId); //4th change
-
-
-                if (mitarbeiter == null || projekt == null)
-                {
-                    ModelState.AddModelError("", "Mitarbeiter not found.");
-                    return View(viewModel);
-                }
-
-                var ma_Projekt = new Ma_Projekt
+            var ma_Projekt = new Ma_Projekt
                 {
                     MitarbeiterId = viewModel.Ma_id,
                     ProjektId = viewModel.Proj_id,
                     RolleId = viewModel.RolleId,
-
-                   // Rolle = rolle.Rolle_name,
                     StartDate = viewModel.Start_date,
                     EndDate = viewModel.End_date,
-                    Taetigkeiten = viewModel.Taetigkeiten,
-                    Proj_Name = projekt.Proj_Name,
-                    MaNachname = mitarbeiter.Ma_Nachname,  // Set the MaNachname
-                      Taetigkeit1 = viewModel.Taetigkeit1,
+                    Taetigkeit1 = viewModel.Taetigkeit1,
                     Taetigkeit2 = viewModel.Taetigkeit2,
                     Taetigkeit3 = viewModel.Taetigkeit3,
                     Taetigkeit4 = viewModel.Taetigkeit4,
@@ -96,14 +144,6 @@ namespace Asqa_Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", $"Unable to save changes: {ex.Message}");
-                ViewData["MitarbeiterList"] = new SelectList(_context.Mitarbeiter, "Id", "Ma_Nachname", viewModel.Ma_id);
-                ViewData["ProjektList"] = new SelectList(_context.Projekten, "Id", "Proj_Name", viewModel.Proj_id);
-                ViewData["RolleList"] = new SelectList(_context.Rollen, "Id", "Rolle_name", viewModel.RolleId);
-                ViewData["TaetigkeitenList"] = new SelectList(_context.Taetigkeiten, "Id", "Description", viewModel.Taetigkeit1);
-                return View(viewModel);
-            }
+       
         }
-}}
+}
