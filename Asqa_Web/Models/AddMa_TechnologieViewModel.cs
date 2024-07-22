@@ -13,6 +13,9 @@ namespace Asqa_Web.Models
         public List<SelectListItem>? MitarbeiterList { get; set; }
         public List<SelectListItem>? TechnologieList { get; set; }
         public List<SelectListItem>? KompetenzList { get; set; }
+        public string? Technologie { get; set; }
+        public string? Kompetenz { get; set; }
+      
 
     }
 }
