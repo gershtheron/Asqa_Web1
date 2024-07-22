@@ -27,6 +27,8 @@ namespace Asqa_Web.Controllers
             var beraterProjekte = await _context.Berater_Projekten
                 .Include(bp => bp.Mitarbeiter)
                 .Include(bp => bp.Projekten)
+                .Include(bp => bp.Rolle) // Ensure role is included
+
                 .Include(bp => bp.Berater_Projekt_Taetigkeiten)
                     .ThenInclude(bpt => bpt.Taetigkeit)
                 .ToListAsync();
@@ -38,19 +40,7 @@ namespace Asqa_Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var mitarbeiter = await _context.Mitarbeiter.ToListAsync();
-            var projekten = await _context.Projekten.ToListAsync();
-            var taetigkeiten = await _context.Taetigkeiten.ToListAsync();
-
-            if (mitarbeiter == null || projekten == null || taetigkeiten == null)
-            {
-                throw new Exception("Data not loaded correctly");
-            }
-
-            ViewBag.MitarbeiterList = new SelectList(mitarbeiter, "Id", "Ma_Nachname");
-            ViewBag.ProjektList = new SelectList(projekten, "Id", "Proj_Name");
-            ViewBag.TaetigkeitenList = new SelectList(taetigkeiten, "Id", "Description");
-
+            await PopulateViewBagsAsync();
             return View();
         }
 
@@ -61,10 +51,7 @@ namespace Asqa_Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.MitarbeiterList = new SelectList(await _context.Mitarbeiter.ToListAsync(), "Id", "Ma_Nachname", viewModel.MitarbeiterId);
-                ViewBag.ProjektList = new SelectList(await _context.Projekten.ToListAsync(), "Id", "Proj_Name", viewModel.ProjektId);
-                ViewBag.TaetigkeitenList = new SelectList(await _context.Taetigkeiten.ToListAsync(), "Id", "Description");
-
+                await PopulateViewBagsAsync();
                 return View(viewModel);
             }
 
@@ -72,6 +59,7 @@ namespace Asqa_Web.Controllers
             {
                 MitarbeiterId = viewModel.MitarbeiterId,
                 ProjektId = viewModel.ProjektId,
+                RolleId = viewModel.RolleId, // Ensure RolleId is set
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate
             };
@@ -87,7 +75,19 @@ namespace Asqa_Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        private async Task PopulateViewBagsAsync()
+            {
+                var mitarbeiter = await _context.Mitarbeiter.ToListAsync();
+                var projekten = await _context.Projekten.ToListAsync();
+                var rollen = await _context.Rollen.ToListAsync();
+                var taetigkeiten = await _context.Taetigkeiten.ToListAsync();
+
+                ViewBag.MitarbeiterList = new SelectList(mitarbeiter, "Id", "Ma_Nachname");
+                ViewBag.ProjektList = new SelectList(projekten, "Id", "Proj_Name");
+                ViewBag.RolleList = new SelectList(rollen, "Id", "Rolle_name"); // Add roles to ViewBag
+                ViewBag.TaetigkeitenList = new SelectList(taetigkeiten, "Id", "Description");
+            }
 
 
-    }
+        }
 }

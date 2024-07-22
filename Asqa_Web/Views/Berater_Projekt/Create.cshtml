@@ -30,6 +30,10 @@ else
         <label asp-for="ProjektId" class="control-label">Projekt</label>
         <select asp-for="ProjektId" class="form-control" asp-items="ViewBag.ProjektList"></select>
     </div>
+       <div class="form-group">
+        <label asp-for="RolleId" class="control-label">Rolle</label>
+        <select asp-for="RolleId" class="form-control" asp-items="ViewBag.RolleList"></select>
+    </div>
     <div class="form-group">
         <label asp-for="SelectedTaetigkeiten" class="control-label">Taetigkeiten</label>
         <select asp-for="SelectedTaetigkeiten" class="form-control" asp-items="ViewBag.TaetigkeitenList" multiple="multiple"></select>

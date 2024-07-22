@@ -19,7 +19,8 @@
     <thead>
         <tr>
             <th>Mitarbeiter Name</th>
-            <th>Projekt Name</th>
+			<th>Projekt Name</th>
+			<th>Rolle</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Taetigkeiten</th>
@@ -32,6 +33,8 @@
             <tr>
                 <td>@item.Mitarbeiter.Ma_Nachname</td>
                 <td>@item.Projekten.Proj_Name</td>
+                <td>@item.Rolle?.Rolle_name</td>
+
                 <td>@item.StartDate.ToString("dd.MM.yyyy")</td>
                 <td>@item.EndDate?.ToString("dd.MM.yyyy")</td>
                 <td>
