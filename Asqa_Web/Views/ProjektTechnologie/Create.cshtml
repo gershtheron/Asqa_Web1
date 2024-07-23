@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AddProjektTechnologieViewModel
+
+@{
+    ViewData["Title"] = "Add Projekt-Technologie";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" id="projektTechnologieForm">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mt-3">
+        <label asp-for="ProjektId" class="form-label">Projekt</label>
+        <select asp-for="ProjektId" class="form-control" asp-items="Model.ProjektList"></select>
+        <span asp-validation-for="ProjektId" class="text-danger"></span>
+    </div>
+
+    <div class="mt-3">
+        <label asp-for="SelectedTechnologien" class="form-label">Technologien</label>
+        <select asp-for="SelectedTechnologien" class="form-control" asp-items="Model.TechnologieList" multiple="multiple"></select>
+        <span asp-validation-for="SelectedTechnologien" class="text-danger"></span>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">SAVE</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            alert("@TempData["SuccessMessage"]");
+            document.getElementById('projektTechnologieForm').reset();
+        </script>
+    }
+}

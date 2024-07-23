@@ -34,6 +34,7 @@ namespace Asqa_Web.Data
         public DbSet<Ma_Technologie> Ma_Technologien { get; set; }
         public DbSet<Berater_Projekten> Berater_Projekt { get; set; }
         public DbSet<Berater_Projekt_Taetigkeit> Berater_Projekten_Taetigkeiten { get; set; }
+        public DbSet<Projekt_Technologie> Projekt_Technologie { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -61,6 +62,19 @@ namespace Asqa_Web.Data
                 .WithMany()
                 .HasForeignKey(bpt => bpt.TaetigkeitId);
 
+            // Configure many-to-many relationship for Projekt_Technologie
+            modelBuilder.Entity<Projekt_Technologie>()
+                .HasKey(pt => new { pt.ProjektId, pt.TechnologieId });
+
+            modelBuilder.Entity<Projekt_Technologie>()
+                .HasOne(pt => pt.Projekten)
+                .WithMany(p => p.Projekt_Technologien)
+                .HasForeignKey(pt => pt.ProjektId);
+
+            modelBuilder.Entity<Projekt_Technologie>()
+                .HasOne(pt => pt.Technologie)
+                .WithMany(t => t.Projekt_Technologien)
+                .HasForeignKey(pt => pt.TechnologieId);
             base.OnModelCreating(modelBuilder);
 
 

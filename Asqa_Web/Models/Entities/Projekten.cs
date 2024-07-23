@@ -6,6 +6,7 @@
         public string? Proj_Name { get; set; }
 
         public virtual ICollection<Ma_Projekt> Ma_Projekte { get; set; }
+        public virtual ICollection<Projekt_Technologie> Projekt_Technologien { get; set; } = new List<Projekt_Technologie>();
 
     }
 }

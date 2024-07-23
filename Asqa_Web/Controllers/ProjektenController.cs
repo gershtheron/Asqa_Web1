@@ -69,6 +69,9 @@ namespace Asqa_Web.Controllers
         public async Task<IActionResult> Select()
         {
             var projektenList = await dbContext.Projekten
+
+
+
                 .Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
