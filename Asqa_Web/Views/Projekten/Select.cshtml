@@ -63,7 +63,7 @@
                             <td>
                                 @if (projekt.TaetigkeitenDescriptions != null && projekt.TaetigkeitenDescriptions.Any())
                                 {
-                                    <a href="#" onclick="toggleDetails('@projekt.Id')">Details</a>
+                                    <a href="#" onclick="toggleDetails(event,'@projekt.Id')">Details</a>
                                     <div id="details-@projekt.Id" class="details" style="display: none;">
                                         <ul>
                                             @foreach (var taetigkeit in projekt.TaetigkeitenDescriptions)
@@ -89,7 +89,8 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        function toggleDetails(id) {
+        function toggleDetails(event, id) {
+            event.preventDefault();
             var detailsElement = document.getElementById('details-' + id);
             if (detailsElement.style.display === 'none') {
                 detailsElement.style.display = 'block';
