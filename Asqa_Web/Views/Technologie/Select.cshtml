@@ -38,6 +38,41 @@
     </div>
 }
 
+<h3>Mitarbeiter Details</h3>
+@if (Model.MitarbeiterList != null && Model.MitarbeiterList.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nachname</th>
+                <th>Vorname</th>
+                <th>Firma Rolle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mitarbeiter in Model.MitarbeiterList)
+            {
+                <tr>
+                    <td>@mitarbeiter.Ma_Nachname</td>
+                    <td>@mitarbeiter.Ma_Vorname</td>
+                    <td>@mitarbeiter.Ma_FirmaRolle</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Mitarbeiter found for this Technologie.</p>
+}
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
 <style>
     .center-form-container {
         display: flex;

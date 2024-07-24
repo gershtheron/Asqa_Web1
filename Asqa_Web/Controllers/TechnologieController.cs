@@ -111,11 +111,26 @@ namespace Asqa_Web.Controllers
             if (ModelState.IsValid && model.SelectedTechnologieId != 0)
             {
                 var selectedTechnologie = await dbContext.Technologie
+                    .Include(t => t.Projekt_Technologien)
+                        .ThenInclude(pt => pt.Projekten)
+                    .Include(t => t.Ma_Technologie)
+                        .ThenInclude(mt => mt.Mitarbeiter)
                     .FirstOrDefaultAsync(t => t.Id == model.SelectedTechnologieId);
 
                 if (selectedTechnologie != null)
                 {
                     model.Tech_name = selectedTechnologie.Tech_name;
+                    model.MitarbeiterList = selectedTechnologie.Ma_Technologie
+                     .Select(mt => new SelectMitarbeiterViewModel
+                     {
+                         Ma_Nachname = mt.Mitarbeiter.Ma_Nachname,
+                         Ma_Vorname = mt.Mitarbeiter.Ma_Vorname,
+                         Ma_FirmaRolle = mt.Mitarbeiter.Ma_FirmaRolle
+                     })
+                     .ToList();
+
+
+
                 }
             }
 
