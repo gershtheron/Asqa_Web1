@@ -5,8 +5,9 @@ namespace Asqa_Web.Models
     public class CombinedProjektenMitarbeiterViewModel
     {
         public SelectProjektenViewModel? SelectProjektenViewModel { get; set; }
-        public List<Ma_Projekt> Ma_Projekte { get; set; } = new List<Ma_Projekt>();
+       
 
+        public List<Berater_ProjektViewModel>? Berater_Projekte { get; set; } = new List<Berater_ProjektViewModel>();
 
     }
 }

@@ -54,7 +54,7 @@
 
 
                <h3>Mitarbeiter Details</h3>
-        @if (Model.Ma_Projekte != null && Model.Ma_Projekte.Count > 0)
+        @if (Model.Berater_Projekte != null && Model.Berater_Projekte.Count > 0)
         {
             <table class="table">
                 <thead>
@@ -68,12 +68,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var projekt in Model.Ma_Projekte)
+                    @foreach (var projekt in Model.Berater_Projekte)
                     {
                         <tr>
-                            <td>@projekt.Mitarbeiter.Ma_Nachname</td>
-                            <td>@projekt.Mitarbeiter.Ma_Vorname</td>
-                            <td>@projekt.Rolle?.Rolle_name</td>
+                            <td>@projekt.Ma_Nachname</td>
+                            <td>@projekt.Ma_Vorname</td>
+                            <td>@projekt.Rolle</td>
                             <td>@projekt.StartDate.ToString("dd.MM.yyyy")</td>
                             <td>@projekt.EndDate?.ToString("dd.MM.yyyy")</td>
                                 <td>
