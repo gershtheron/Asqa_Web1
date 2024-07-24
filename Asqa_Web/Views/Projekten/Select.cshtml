@@ -6,62 +6,46 @@
 
 @model Asqa_Web.Models.CombinedProjektenMitarbeiterViewModel
 
+
+
 <div class="text-center">
     <img src="~/images/AsqaPersonal2.jpeg" alt="Welcome Image" style="max-width: 80%; height: auto;" />
+</div>
 
-<h1></h1>
+<h1 class="text-center">Select Projekt</h1>
+
+<div class="center-form-container">
     <form asp-action="Select" method="post" class="center-form">
         <div class="form-group">
             <label for="SelectedProjektenId" class="mr-2"></label>
             <div class="input-group">
-                <select asp-for="SelectProjektenViewModel.SelectedProjektenId" class="form-control" asp-items="Model.SelectProjektenViewModel.ProjektenList" style="max-width: 300px;">
+                <select asp-for="SelectProjektenViewModel.SelectedProjektenId" class="form-control" asp-items="Model.SelectProjektenViewModel.ProjektenList">
                     <option value="">-- Select Projekt --</option>
                 </select>
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-primary">Select</button>
                     <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Projekten")'">Add Projekt</button>
-
                 </div>
             </div>
         </div>
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 @if (Model.SelectProjektenViewModel.SelectedProjektenId != 0)
 {
-    <div class="mt-4">
+    <div class="mt-4 text-center">
         <h3>Projekten Details</h3>
         <p><strong>Projekt Name:</strong> @Model.SelectProjektenViewModel.Proj_Name</p>
-    
 
-
-               <h3>Mitarbeiter Details</h3>
+        <h3>Mitarbeiter Details</h3>
         @if (Model.Berater_Projekte != null && Model.Berater_Projekte.Count > 0)
         {
-            <table class="table">
+            <table class="table table-centered">
                 <thead>
                     <tr>
                         <th>Nachname</th>
                         <th>Vorname</th>
-                        <th> Rolle</th>
+                        <th>Rolle</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Taetigkeiten</th>
@@ -76,20 +60,20 @@
                             <td>@projekt.Rolle</td>
                             <td>@projekt.StartDate.ToString("dd.MM.yyyy")</td>
                             <td>@projekt.EndDate?.ToString("dd.MM.yyyy")</td>
-                                <td>
-                                    @if (projekt.TaetigkeitenDescriptions != null && projekt.TaetigkeitenDescriptions.Any())
-                                    {
-                                        <a href="#" onclick="toggleDetails('@projekt.Id')">Details</a>
-                                        <div id="details-@projekt.Id" class="details" style="display: none;">
-                                            <ul>
-                                                @foreach (var taetigkeit in projekt.TaetigkeitenDescriptions)
-                                                {
-                                                    <li>@taetigkeit</li>
-                                                }
-                                            </ul>
-                                        </div>
-                                    }
-                                </td>
+                            <td>
+                                @if (projekt.TaetigkeitenDescriptions != null && projekt.TaetigkeitenDescriptions.Any())
+                                {
+                                    <a href="#" onclick="toggleDetails('@projekt.Id')">Details</a>
+                                    <div id="details-@projekt.Id" class="details" style="display: none;">
+                                        <ul>
+                                            @foreach (var taetigkeit in projekt.TaetigkeitenDescriptions)
+                                            {
+                                                <li>@taetigkeit</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -97,11 +81,58 @@
         }
         else
         {
-            <p>No Mitarbeiter found for this project.</p>
+            <p>No Berater found for this project.</p>
         }
     </div>
 }
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function toggleDetails(id) {
+            var detailsElement = document.getElementById('details-' + id);
+            if (detailsElement.style.display === 'none') {
+                detailsElement.style.display = 'block';
+            } else {
+                detailsElement.style.display = 'none';
+            }
+        }
+    </script>
 }
+
+<style>
+    .center-form-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .center-form .form-group {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .center-form .input-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    .input-group-append {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .btn-primary {
+        margin-left: 5px;
+    }
+
+    .table-centered {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
