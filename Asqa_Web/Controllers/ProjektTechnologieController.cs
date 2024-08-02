@@ -19,6 +19,21 @@ namespace Asqa_Web.Controllers
             _context = context;
         }
 
+        // GET: ProjektTechnologie
+        public async Task<IActionResult> Index()
+        {
+            var projektTechnologien = await _context.Projekt_Technologie
+                .Include(pt => pt.Projekten)
+                .Include(pt => pt.Technologie)
+                .ToListAsync();
+            return View(projektTechnologien);
+        }
+
+
+
+
+
+
         // GET: ProjektTechnologie/Create
         [HttpGet]
         public async Task<IActionResult> Create()
