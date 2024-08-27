@@ -10,3 +10,4 @@ The Start Screen above shows the three main areas of the web application (develo
 
 https://github.com/user-attachments/assets/7b4baa2b-5d73-4cbf-be6d-15b78aa39147
 
+Above clip shows the selection of the "Berater" or Consultant button to the application and preliminary data associated with this class
